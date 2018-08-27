@@ -1,0 +1,7 @@
+# Copyright (c) 2018 NVIDIA Corporation
+#
+# Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
+
+[submodule "external/executors-impl"]
+  path = external/executors_impl
+  url = https://github.com/executors/executors-impl.git
