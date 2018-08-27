@@ -2,24 +2,32 @@
 #
 # Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
   
-cmake_minimum_required(VERSION 3.11)
+cmake_minimum_required(VERSION 3.12)
 
 project(EXECUTORS_LITE CXX)
 
-find_package(CUDA VERSION 9.0)
+include(CheckLanguage)
 
-if (CUDA_FOUND)
+check_language(CUDA)
+
+if (CMAKE_CUDA_COMPILER)
   enable_language(CUDA)
 endif()
 
 include(CTest)
 enable_testing()
   
-file(GLOB EXECUTORS_LITE_TESTS CONFIGURE_DEPENDS tests/*.cpp)
+file(
+  GLOB EXECUTORS_LITE_TESTS CONFIGURE_DEPENDS
+  ${PROJECT_SOURCE_DIR}/tests/*.cpp
+)
 
-if (CUDA_FOUND)
-  file(GLOB EXECUTORS_LITE_CUDA_TESTS CONFIGURE_DEPENDS tests/*.cu)
-  set(EXECUTORS_LITE_TESTS "${EXECUTORS_LITE_TESTS}:${EXECUTORS_LITE_TESTS}")
+if (CMAKE_CUDA_COMPILER)
+  file(
+    GLOB EXECUTORS_LITE_CUDA_TESTS CONFIGURE_DEPENDS
+    ${PROJECT_SOURCE_DIR}/tests/*.cu
+  )
+  list(APPEND EXECUTORS_LITE_TESTS ${EXECUTORS_LITE_CUDA_TESTS})
 endif()
 
 foreach(source_file IN LISTS EXECUTORS_LITE_TESTS)
@@ -29,7 +37,7 @@ foreach(source_file IN LISTS EXECUTORS_LITE_TESTS)
 
   target_include_directories(
     ${executable}
-    PUBLIC ${PROJECT_SOURCE_DIR}/executors_lite
+    PUBLIC ${PROJECT_SOURCE_DIR}
     PRIVATE ${PROJECT_SOURCE_DIR}/external/executors_impl
   )
 
