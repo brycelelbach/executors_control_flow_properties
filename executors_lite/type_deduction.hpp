@@ -29,6 +29,11 @@
 ///
 #define MVCAP(x) x = MV(x)
 
+/// \def FWDCAP(x)
+/// \brief Capture `x` into a lambda by forwarding.
+///
+#define FWDCAP(x) x = FWD(x)
+
 /// \def RETOF(invocable, ...)
 /// \brief Expands to the type returned by invoking an instance of the invocable
 ///        type \a invocable with parameters of type <tt>__VA_ARGS__</tt>.

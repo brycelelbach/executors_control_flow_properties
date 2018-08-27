@@ -3,8 +3,8 @@
 //
 // Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
 
-#if !defined(EXECUTORS_LITE_CUDA_FUTURE_NEW_HPP)
-#define EXECUTORS_LITE_CUDA_FUTURE_NEW_HPP
+#if !defined(EXECUTORS_LITE_CUDA_EXECUTOR_HPP)
+#define EXECUTORS_LITE_CUDA_EXECUTOR_HPP
 
 #include <executors_lite/type_deduction.hpp>
 
@@ -61,14 +61,14 @@ void cuda_launch_bulk_kernel(Stream&& stream, F f, Shape n, StateFactory&& sf)
 struct cuda_new_stream_executor final
 {
   template <typename F>
-  void execute(F&& f) 
+  void execute(F&& f) const
   {
     auto stream = make_cuda_unique_stream();
     cuda_launch_single_kernel(stream, FWD(f));
   }
 
   template <typename F, typename Shape, typename StateFactory>
-  void bulk_execute(F&& f, Shape&& n, StateFactory&& sf)
+  void bulk_execute(F&& f, Shape&& n, StateFactory&& sf) const
   {
     auto stream = make_cuda_unique_stream();
     cuda_launch_bulk_kernel(stream, FWD(f), FWD(n), FWD(sf));
@@ -78,7 +78,7 @@ struct cuda_new_stream_executor final
 
   // No flush.
 
-  void wait()
+  void wait() const
   {
     THROW_ON_CUDA_RT_ERROR(cudaDeviceSynchronize());
   }
@@ -124,7 +124,7 @@ public:
 
   // No flush.
 
-  void wait()
+  void wait() const
   {
     THROW_ON_CUDA_RT_ERROR(cudaStreamSynchronize(stream_.get()));
   }
@@ -132,5 +132,5 @@ public:
 
 ///////////////////////////////////////////////////////////////////////////////
 
-#endif // EXECUTORS_LITE_CUDA_FUTURE_NEW_HPP
+#endif // EXECUTORS_LITE_CUDA_EXECUTOR_HPP
 
