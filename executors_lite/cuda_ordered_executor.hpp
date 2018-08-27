@@ -14,25 +14,37 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-template <typename F, typename State>
+template <typename F>
 __global__
-void cuda_execute_impl(F&& f, State&& state)
+void
+cuda_execute_impl(F f)
 {
-  auto const idx = blockIdx.x * blockDim.x + threadIdx.x;
-  FWD(f)(idx, FWD(state));
+  FWD(f)();
 }
 
 struct cuda_ordered_executor final
 {
+private:
+
   // This is a `unique_ptr`, we can make it a `shared_ptr` to ensure it's
   // copyable if desired.
   cuda_stream stream_;
+
+public:
+
+  cuda_ordered_executor() = default;
+
+  cuda_ordered_executor(cuda_ordered_executor const&) = delete;
+  cuda_ordered_executor(cuda_ordered_executor&&) = default;
+  cuda_ordered_executor& operator=(cuda_ordered_executor const&) = delete;
+  cuda_ordered_executor& operator=(cuda_ordered_executor&& other) = default;
 
   /////////////////////////////////////////////////////////////////////////////
   // Internal (GPU) -> Internal (GPU) Dependent Execution.
 
   template <typename Invocable>
-  void execute(Invocable&& f)
+  void
+  execute(Invocable&& f)
   {
     cuda_execute_impl<<<1, 1, 0, stream_.get()>>>(FWD(f));
     THROW_ON_CUDA_RT_ERROR(cudaGetLastError());
@@ -66,7 +78,11 @@ struct cuda_ordered_executor final
     auto state = FWD(sf)();
 
     cuda_execute_impl<<<grid_size, block_size, 0, stream_.get()>>>(
-      FWD(ef), MV(state)
+      [ef, state] __device__ ()
+      {
+        int const idx = blockIdx.x * blockDim.x + threadIdx.x;
+        ef(idx, state);
+      }
     );
     THROW_ON_CUDA_RT_ERROR(cudaGetLastError());
   }

@@ -38,6 +38,8 @@ public:
 
   cuda_stream(cuda_stream const&) = delete;
   cuda_stream(cuda_stream&&) = default;
+  cuda_stream& operator=(cuda_stream const&) = delete;
+  cuda_stream& operator=(cuda_stream&&) = default;
 
   CUstream_st& operator*() const
   {

@@ -14,6 +14,8 @@ if (CMAKE_CUDA_COMPILER)
   enable_language(CUDA)
 endif()
 
+set(CMAKE_CXX_STANDARD 14)
+
 include(CTest)
 enable_testing()
   
@@ -39,6 +41,13 @@ foreach(source_file IN LISTS EXECUTORS_LITE_TESTS)
     ${executable}
     PUBLIC ${PROJECT_SOURCE_DIR}
     PRIVATE ${PROJECT_SOURCE_DIR}/external/executors_impl
+  )
+
+  # CMake's CUDA support doesn't seem to recognize CMAKE_CXX_STANDARD, so we
+  # need to specify it here.
+  target_compile_options(
+    ${executable}
+    PUBLIC $<$<COMPILE_LANGUAGE:CUDA>:--expt-extended-lambda -std=c++14>
   )
 
   add_test(run.${executable} ${executable})
