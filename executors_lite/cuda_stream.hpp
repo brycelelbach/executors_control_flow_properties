@@ -23,39 +23,35 @@ struct cuda_stream_deleter final
   }
 };
 
-struct cuda_stream final
+inline
+auto make_cuda_unique_stream()
 {
-private:
-  std::shared_ptr<CUstream_st> ptr;
+  CUstream_st* s;
+  THROW_ON_CUDA_RT_ERROR(cudaStreamCreate(&s));
+  return std::unique_ptr<CUstream_st, cuda_stream_deleter>(
+    s, cuda_stream_deleter{}
+  );
+}
 
-public:
-  cuda_stream()
-  {
-    CUstream_st* s;
-    THROW_ON_CUDA_RT_ERROR(cudaStreamCreate(&s));
-    ptr.reset(s, cuda_stream_deleter{});
-  }
+using cuda_unique_stream = decltype(make_cuda_unique_stream());
 
-  cuda_stream(cuda_stream const&) = delete;
-  cuda_stream(cuda_stream&&) = default;
-  cuda_stream& operator=(cuda_stream const&) = delete;
-  cuda_stream& operator=(cuda_stream&&) = default;
+inline
+auto make_cuda_shared_stream()
+{
+  CUstream_st* s;
+  THROW_ON_CUDA_RT_ERROR(cudaStreamCreate(&s));
+  return std::shared_ptr<CUstream_st>(s, cuda_stream_deleter{});
+}
 
-  CUstream_st& operator*() const
-  {
-    return *ptr.get();
-  }
+using cuda_shared_stream = decltype(make_cuda_shared_stream());
 
-  CUstream_st* operator->() const
-  {
-    return ptr.get();
-  }
+inline
+auto make_cuda_stream()
+{
+  return make_cuda_shared_stream();
+}
 
-  CUstream_st* get() const
-  {
-    return ptr.get();
-  }
-};
+using cuda_stream = cuda_shared_stream;
 
 ///////////////////////////////////////////////////////////////////////////////
 
