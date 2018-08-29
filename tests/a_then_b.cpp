@@ -20,8 +20,8 @@ auto a_then_b(const ExecutorA& ex_a, FunctionA&& f_a, const ExecutorB& ex_b, Fun
 {
   using namespace std::experimental::execution;
 
-  // forget ex_b's dependencies and make it a lazy then executor
-  auto lazy_ex_b = require(ex_b, depends_on(), lazy, then);
+  // forget ex_b's dependencies and make it a lazy single executor
+  auto lazy_ex_b = require(ex_b, depends_on(), lazy, single);
 
   // lazily enqueue f_b
   auto result_ex = lazy_ex_b.execute(f_b);
