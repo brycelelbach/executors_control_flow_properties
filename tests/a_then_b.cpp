@@ -41,12 +41,3 @@ auto a_then_b(const ExecutorA& ex_a, FunctionA&& f_a, const ExecutorB& ex_b, Fun
   return result_ex;
 }
 
-// XXX high-level concern: worried that .then_execute() is redundant with depends_on()
-// if we eliminated .then_execute() and just had depends_on(), how would we get an executor to use as the next dependency?
-// also, would that introduce what Facebook calls a "race"?
-//
-// Lee said this in response to the idea of decoupling from Futures completely:
-//
-// > If you want to go down that path, get rid of then_execute completely. Your executor can simply order work if it likes (using *another* property, if we so wish).
-// > The difference between that and the executors Kirk has proposed is then only that Kirk's executors have a mechanism for providing a subexecutor to a task.
-
