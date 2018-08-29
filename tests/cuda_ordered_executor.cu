@@ -1,6 +1,6 @@
-#include <executors_lite/lightweight_test.hpp>
+#include <lightweight_test.hpp>
 
-#include <executors_lite/cuda_executor.hpp>
+#include <cuda_executor.hpp>
 
 int main()
 {

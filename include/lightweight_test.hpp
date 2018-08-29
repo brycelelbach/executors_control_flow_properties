@@ -9,8 +9,8 @@
 //
 // Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
 
-#ifndef EXECUTORS_LITE_CORE_LIGHTWEIGHT_TEST_HPP
-#define EXECUTORS_LITE_CORE_LIGHTWEIGHT_TEST_HPP
+#ifndef EXECUTORS_CONTROL_FLOW_PROPERTIES_CORE_LIGHTWEIGHT_TEST_HPP
+#define EXECUTORS_CONTROL_FLOW_PROPERTIES_CORE_LIGHTWEIGHT_TEST_HPP
 
 #include <iostream>
 #include <cassert>
@@ -144,5 +144,5 @@ inline int report_errors()
 #define EL_TEST_EQ(expr1,expr2) ( ::el::detail::test_eq_impl(#expr1, #expr2, __FILE__, __LINE__, CURRENT_FUNCTION, expr1, expr2) )
 #define EL_TEST_NE(expr1,expr2) ( ::el::detail::test_ne_impl(#expr1, #expr2, __FILE__, __LINE__, CURRENT_FUNCTION, expr1, expr2) )
 
-#endif // #ifndef EXECUTORS_LITE_CORE_LIGHTWEIGHT_TEST_HPP
+#endif // #ifndef EXECUTORS_CONTROL_FLOW_PROPERTIES_CORE_LIGHTWEIGHT_TEST_HPP
 

@@ -1,6 +1,6 @@
-#include <executors_lite/lightweight_test.hpp>
+#include <lightweight_test.hpp>
 
-#include <executors_lite/inline_executor.hpp>
+#include <inline_executor.hpp>
 
 int main()
 {

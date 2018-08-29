@@ -1,4 +1,4 @@
-#include <executors_lite/cuda_then_executor.hpp>
+#include <cuda_then_executor.hpp>
 #include <iostream>
 
 int main()

@@ -3,8 +3,8 @@
 //
 // Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
 
-#if !defined(EXECUTORS_LITE_MEMORY_HPP)
-#define EXECUTORS_LITE_MEMORY_HPP
+#if !defined(EXECUTORS_CONTROL_FLOW_PROPERTIES_MEMORY_HPP)
+#define EXECUTORS_CONTROL_FLOW_PROPERTIES_MEMORY_HPP
 
 #include <utility>
 #include <new>
@@ -383,5 +383,5 @@ auto uninitialized_allocate_unique_n(
 
 ///////////////////////////////////////////////////////////////////////////////
 
-#endif // EXECUTORS_LITE_MEMORY_HPP
+#endif // EXECUTORS_CONTROL_FLOW_PROPERTIES_MEMORY_HPP
 

@@ -3,8 +3,8 @@
 //
 // Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
 
-#if !defined(EXECUTORS_LITE_LAZY_EXECUTOR_HPP)
-#define EXECUTORS_LITE_LAZY_EXECUTOR_HPP
+#if !defined(EXECUTORS_CONTROL_FLOW_PROPERTIES_LAZY_EXECUTOR_HPP)
+#define EXECUTORS_CONTROL_FLOW_PROPERTIES_LAZY_EXECUTOR_HPP
 
 #include <type_traits>
 
@@ -56,5 +56,5 @@ auto async_lazy(G&& g)
 
 ///////////////////////////////////////////////////////////////////////////////
 
-#endif // EXECUTORS_LITE_LAZY_EXECUTOR_HPP
+#endif // EXECUTORS_CONTROL_FLOW_PROPERTIES_LAZY_EXECUTOR_HPP
 

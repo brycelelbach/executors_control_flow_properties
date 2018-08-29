@@ -4,7 +4,7 @@
   
 cmake_minimum_required(VERSION 3.12)
 
-project(EXECUTORS_LITE CXX)
+project(EXECUTORS_CONTROL_FLOW_PROPERTIES CXX)
 
 include(CheckLanguage)
 
@@ -20,26 +20,26 @@ include(CTest)
 enable_testing()
   
 file(
-  GLOB EXECUTORS_LITE_TESTS CONFIGURE_DEPENDS
+  GLOB EXECUTORS_CONTROL_FLOW_PROPERTIES_TESTS CONFIGURE_DEPENDS
   ${PROJECT_SOURCE_DIR}/tests/*.cpp
 )
 
 if (CMAKE_CUDA_COMPILER)
   file(
-    GLOB EXECUTORS_LITE_CUDA_TESTS CONFIGURE_DEPENDS
+    GLOB EXECUTORS_CONTROL_FLOW_PROPERTIES_CUDA_TESTS CONFIGURE_DEPENDS
     ${PROJECT_SOURCE_DIR}/tests/*.cu
   )
-  list(APPEND EXECUTORS_LITE_TESTS ${EXECUTORS_LITE_CUDA_TESTS})
+  list(APPEND EXECUTORS_CONTROL_FLOW_PROPERTIES_TESTS ${EXECUTORS_LITE_CUDA_TESTS})
 endif()
 
-foreach(source_file IN LISTS EXECUTORS_LITE_TESTS)
+foreach(source_file IN LISTS EXECUTORS_CONTROL_FLOW_PROPERTIES_TESTS)
   get_filename_component(executable ${source_file} NAME_WE)
 
   add_executable(${executable} ${source_file})
 
   target_include_directories(
     ${executable}
-    PUBLIC ${PROJECT_SOURCE_DIR}
+    PUBLIC ${PROJECT_SOURCE_DIR}/include
     PRIVATE ${PROJECT_SOURCE_DIR}/external/executors_impl
   )
 

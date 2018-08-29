@@ -1,5 +1,5 @@
-#include <executors_lite/new_thread_executor.hpp>
-#include <executors_lite/lazy_oneway_executor_adaptor.hpp>
+#include <new_thread_executor.hpp>
+#include <lazy_oneway_executor_adaptor.hpp>
 #include <chrono>
 #include <iostream>
 #include <cassert>

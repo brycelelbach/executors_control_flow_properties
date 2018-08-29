@@ -3,8 +3,8 @@
 //
 // Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
 
-#if !defined(EXECUTORS_LITE_CUDA_MEMORY_HPP)
-#define EXECUTORS_LITE_CUDA_MEMORY_HPP
+#if !defined(EXECUTORS_CONTROL_FLOW_PROPERTIES_CUDA_MEMORY_HPP)
+#define EXECUTORS_CONTROL_FLOW_PROPERTIES_CUDA_MEMORY_HPP
 
 #include <memory>
 #include <type_traits>
@@ -167,5 +167,5 @@ using cuda_managed_unique_ptr
 
 ///////////////////////////////////////////////////////////////////////////////
 
-#endif // EXECUTORS_LITE_CUDA_MEMORY_HPP
+#endif // EXECUTORS_CONTROL_FLOW_PROPERTIES_CUDA_MEMORY_HPP
 

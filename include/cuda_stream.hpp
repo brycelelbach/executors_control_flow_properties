@@ -3,8 +3,8 @@
 //
 // Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
 
-#if !defined(EXECUTORS_LITE_CUDA_STREAM_HPP)
-#define EXECUTORS_LITE_CUDA_STREAM_HPP
+#if !defined(EXECUTORS_CONTROL_FLOW_PROPERTIES_CUDA_STREAM_HPP)
+#define EXECUTORS_CONTROL_FLOW_PROPERTIES_CUDA_STREAM_HPP
 
 #include <memory>
 
@@ -55,5 +55,5 @@ using cuda_stream = cuda_shared_stream;
 
 ///////////////////////////////////////////////////////////////////////////////
 
-#endif // EXECUTORS_LITE_CUDA_STREAM_HPP
+#endif // EXECUTORS_CONTROL_FLOW_PROPERTIES_CUDA_STREAM_HPP
 

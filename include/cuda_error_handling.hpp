@@ -3,8 +3,8 @@
 //
 // Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
 
-#if !defined(EXECUTORS_LITE_CUDA_ERROR_HANDLING_HPP)
-#define EXECUTORS_LITE_CUDA_ERROR_HANDLING_HPP
+#if !defined(EXECUTORS_CONTROL_FLOW_PROPERTIES_CUDA_ERROR_HANDLING_HPP)
+#define EXECUTORS_CONTROL_FLOW_PROPERTIES_CUDA_ERROR_HANDLING_HPP
 
 #include <string>
 #include <exception>
@@ -98,5 +98,5 @@ inline void throw_on_cuda_drv_error(CUresult error, char const* message)
 
 ///////////////////////////////////////////////////////////////////////////////
 
-#endif // EXECUTORS_LITE_CUDA_ERROR_HANDLING_HPP
+#endif // EXECUTORS_CONTROL_FLOW_PROPERTIES_CUDA_ERROR_HANDLING_HPP
 

@@ -3,8 +3,8 @@
 //
 // Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
 
-#if !defined(EXECUTORS_LITE_INLINE_EXECUTOR_HPP)
-#define EXECUTORS_LITE_INLINE_EXECUTOR_HPP
+#if !defined(EXECUTORS_CONTROL_FLOW_PROPERTIES_INLINE_EXECUTOR_HPP)
+#define EXECUTORS_CONTROL_FLOW_PROPERTIES_INLINE_EXECUTOR_HPP
 
 #include <executors_lite/type_deduction.hpp>
 
@@ -27,5 +27,5 @@ struct inline_executor final
 
 ///////////////////////////////////////////////////////////////////////////////
 
-#endif // EXECUTORS_LITE_INLINE_EXECUTOR_HPP
+#endif // EXECUTORS_CONTROL_FLOW_PROPERTIES_INLINE_EXECUTOR_HPP
 
